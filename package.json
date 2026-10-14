@@ -1,0 +1,32 @@
+{
+  "name": "nexora-desktop",
+  "version": "1.0.0",
+  "description": "Nexora desktop app",
+  "main": "main.js",
+  "author": "Nexora",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "31.7.7",
+    "electron-builder": "24.13.3"
+  },
+  "build": {
+    "appId": "app.nexora.desktop",
+    "productName": "Nexora",
+    "files": ["main.js", "package.json"],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Nexora"
+    },
+    "artifactName": "Nexora-Setup.${ext}"
+  }
+}
