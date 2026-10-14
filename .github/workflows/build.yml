@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: windows-latest
@@ -13,7 +15,8 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run dist
-      - uses: actions/upload-artifact@v4
+      - uses: softprops/action-gh-release@v2
         with:
-          name: Nexora-Installer
-          path: dist/Nexora-Setup.exe
+          tag_name: v${{ github.run_number }}
+          name: Nexora ${{ github.run_number }}
+          files: dist/Nexora-Setup.exe
